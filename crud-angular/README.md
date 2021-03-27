@@ -8,30 +8,93 @@
 4. ng serve -o <!-- COMPILAR LA APLICACION Y VISUALIZA EN EL NAVEGADOR -->
 5. DESPUES DE CLONAR EL REPOSITORIO EJECUTAR EL SIGIENTE COMANDO: npm install
 
-# CrudAngular
+# SCRIPT DE BASE DE DATOS A GENERAR
+USE [AngularChat]
+GO
+/****** Object:  Table [dbo].[Value]    Script Date: 27/03/2021 3:47:41 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Value](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Value1] [varchar](50) NULL,
+	[Value2] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
+GO
+/****** Object:  StoredProcedure [dbo].[DeleteValue]    Script Date: 27/03/2021 3:47:41 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[DeleteValue]
+@Id int
+as
+begin
+	delete from [Value] where Id = @Id
+end
 
-## Development server
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllValues]    Script Date: 27/03/2021 3:47:41 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[GetAllValues]
+as
+begin
+	select * from Value
+end
+GO
+/****** Object:  StoredProcedure [dbo].[GetValueId]    Script Date: 27/03/2021 3:47:41 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[GetValueId]
+@Id int
+as
+begin
+	select * from [value] where Id = @Id
+end
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+GO
+/****** Object:  StoredProcedure [dbo].[InsertValue]    Script Date: 27/03/2021 3:47:41 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[InsertValue]
+@Value1 varchar(50),
+@Value2 varchar(50),
+@Return int output
+as
+begin
+	insert into [Value](value1, value2)
+	values(@Value1, @Value2)
 
-## Code scaffolding
+	set @Return = SCOPE_IDENTITY()
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+end
+GO
+/****** Object:  StoredProcedure [dbo].[UpdateValue]    Script Date: 27/03/2021 3:47:41 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[UpdateValue]
+@Id int,
+@Value1 varchar(50),
+@Value2 varchar(50)
+AS
+BEGIN
+	update Value set Value1 = @Value1,
+		Value2 = @Value2
+	where Id = @Id
+END
+GO
