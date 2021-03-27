@@ -1,0 +1,51 @@
+<div class="col-sm-12">
+    <div class="col-sm-12 mb-3 text-center text-secondary">
+        <h1 *ngIf="id !== 'nuevo'">Editar</h1>
+        <h1 *ngIf="id === 'nuevo'">Nuevo</h1>
+    </div>
+    
+    <form (ngSubmit)="grabar(f)" #f = "ngForm">
+        <div class="row form-group mb-3">
+            <label class="col-sm-2 col-form-label">Id</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control"
+                    name="id"
+                    placeholder="id"
+                    [(ngModel)]="valor.id"
+                    disabled
+                />
+            </div>
+        </div>
+        <div class="row form-group mb-3">
+            <label class="col-sm-2 col-form-label">Value 1</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control"
+                    name="value1"
+                    placeholder="Value 1"
+                    [(ngModel)]="valor.value1"
+                    required
+                    #value1validar="ngModel"
+                    [class.is-invalid]="value1validar.invalid && value1validar.touched"
+                />
+            </div>
+        </div>
+        <div class="row form-group mb-3">
+            <label class="col-sm-2 col-form-label">Value 2</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control"
+                    name="value2"
+                    placeholder="Value 2"
+                    [(ngModel)]="valor.value2"
+                    required
+                    #value2validar="ngModel"
+                    [class.is-invalid]="value2validar.invalid && value2validar.touched"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 text-center">
+            <button class="btn btn-primary">Grabar</button> {{ " " }}
+            <button class="btn btn-danger" routerLink="/inicio">Cancelar</button>
+        </div>
+    </form>
+    
+</div>

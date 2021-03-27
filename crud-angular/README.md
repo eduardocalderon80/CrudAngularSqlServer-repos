@@ -1,3 +1,12 @@
+# LIBRERIAS INSTALADAS
+1. npm install sweetalert2
+
+# COMANDOS NPM EJECUTADOS
+1. ng g c components/inicio --skipTests=true <!-- CREA EL COMPONENTE inicio -->
+2. ng g c components/editar --skipTests=true <!-- CREA EL COMPONENTE editar -->
+3. ng g s servicio/crudServicio <!-- CREAR EL ARCHIVO SERVICIO -->
+4. ng serve -o <!-- COMPILAR LA APLICACION Y VISUALIZA EN EL NAVEGADOR -->
+
 # CrudAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
