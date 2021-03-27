@@ -140,5 +140,6 @@ namespace PRACTICAANGULAR.Repository
                 Value2 = (string)reader["Value2"]
             };
         }
+
     }
 }
