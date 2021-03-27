@@ -6,6 +6,7 @@
 2. ng g c components/editar --skipTests=true <!-- CREA EL COMPONENTE editar -->
 3. ng g s servicio/crudServicio <!-- CREAR EL ARCHIVO SERVICIO -->
 4. ng serve -o <!-- COMPILAR LA APLICACION Y VISUALIZA EN EL NAVEGADOR -->
+5. DESPUES DE CLONAR EL REPOSITORIO EJECUTAR EL SIGIENTE COMANDO: npm install
 
 # CrudAngular
 
